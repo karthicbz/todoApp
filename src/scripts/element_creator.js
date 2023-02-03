@@ -3,8 +3,17 @@ const createElement = (tagName, className=null, idName=null, text=null, src=null
         return elementCreator.creator(tagName, className, idName, text);
     }
     else{
-        return elementCreator.imageElementCreator();
+        return elementCreator.imageElementCreator(tagName, src, alt);
     }
+}
+
+const divPacker = (values)=>{
+    const element = document.createElement('div');
+    values.forEach(value=>{
+        const [tagName, className, idName, text, src, alt] = value;
+        element.appendChild(createElement(tagName, className, idName, text, src, alt));
+    });
+    return element;
 }
 
 const elementCreator = (()=>{
@@ -22,7 +31,7 @@ const elementCreator = (()=>{
         return element;
     }
 
-    const imageElementCreator = (tagName, alt, src)=>{
+    const imageElementCreator = (tagName, src, alt)=>{
         const element = document.createElement(tagName);
         if(alt !== null){
             element.alt = alt;
@@ -30,9 +39,10 @@ const elementCreator = (()=>{
         if(src !== null){
             element.src = src;
         }
+        return element;
     }
 
     return {creator, imageElementCreator};
 })();
 
-export {createElement};
+export {createElement, divPacker};
