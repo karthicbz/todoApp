@@ -14,14 +14,11 @@ sidebar.appendChild(divPacker([['img', null, null, null, todayImage, null], ['p'
 sidebar.appendChild(divPacker([['img', null, null, null, weekImage, null], ['p', null, 'week', 'This Week', null, null]]));
 sidebar.appendChild(divPacker([['img', null, null, null, monthImage, null],['p', null, 'all-tasks', 'All Tasks', null, null]]));
 sidebar.appendChild(divPacker([['img', null, null, null, myList, null],['p', null, 'my-lists', 'My Lists', null, null]], null, 'myListContainer'));
-sidebar.appendChild(divPacker([['input', null, 'newListInput', 'text'],['img', null, null, null, addCircle, null]], null, 'newListInputContainer'));
+sidebar.appendChild(divPacker([['input', null, 'newListInput', 'text'],['img', null, 'addCircle', null, addCircle, null]], null, 'newListInputContainer'));
 sidebar.appendChild(createElement('div', null, 'newListItems', null));
 sidebar.appendChild(divPacker([['img', null, null, null, allNotes, null],['p', null, 'notes', 'Notes', null, null]]));
 content.appendChild(sidebar);
 const container = createElement('div', null, 'container', null);
 content.appendChild(container);
 
-const myListContainer = document.getElementById('myListContainer');
-myListContainer.addEventListener('click', ()=>{
-    document.getElementById('newListInputContainer').classList.toggle('hideNewListInputContainer');
-})
+const newListInput = document.getElementById('newListInput');

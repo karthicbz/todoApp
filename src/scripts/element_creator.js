@@ -5,7 +5,7 @@ const createElement = (tagName, className=null, idName=null, text=null, src=null
         return elementCreator.creator(tagName, className, idName, text);
     }
     else{
-        return elementCreator.imageElementCreator(tagName, src, alt);
+        return elementCreator.imageElementCreator(tagName, className, idName, text, src, alt);
     }
 }
 
@@ -43,8 +43,16 @@ const elementCreator = (()=>{
         return element;
     }
 
-    const imageElementCreator = (tagName, src, alt)=>{
-        const element = document.createElement(tagName);
+    const imageElementCreator = (tagName, className, idName, text, src, alt)=>{
+        // const element = document.createElement(tagName);
+        // if(alt !== null){
+        //     element.alt = alt;
+        // }
+        // if(src !== null){
+        //     element.src = src;
+        // }
+        // return element;
+        const element = creator(tagName, className, idName, text);
         if(alt !== null){
             element.alt = alt;
         }

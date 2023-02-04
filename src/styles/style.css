@@ -49,6 +49,8 @@ body{
 #newListInputContainer #newListInput{
     font-size: 1.1rem;
     padding: 3px 0;
+    border: none;
+    border-radius: 5px;
 }
 
 #sidebar>#newListInputContainer img{
@@ -58,10 +60,6 @@ body{
 
 #sidebar>#newListInputContainer img:active{
     transform: scale(0.9);
-}
-
-.hideNewListInputContainer{
-    visibility: hidden;
 }
 
 #container{
