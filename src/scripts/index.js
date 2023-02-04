@@ -26,5 +26,11 @@ const addListItemButton = document.getElementById('addListItemButton');
 
 addListItemButton.addEventListener('click', ()=>{
     // console.log(newListInput.value);
-    document.getElementById('newListItems').appendChild(createElement('div', null, null, `${newListInput.value}`));
+    const  newListItemContainer = document.querySelectorAll('#newListItems>div');
+    const newListItems = document.getElementById('newListItems');
+    newListItems.appendChild(createElement('div', null, null, `${newListInput.value}`));
+    newListInput.value = '';
+    if(newListItemContainer.length >= 0){
+        newListItems.setAttribute('style', 'display: flex;');
+    }
 });
