@@ -14,7 +14,7 @@ sidebar.appendChild(divPacker([['img', null, null, null, todayImage, null], ['p'
 sidebar.appendChild(divPacker([['img', null, null, null, weekImage, null], ['p', null, 'week', 'This Week', null, null]]));
 sidebar.appendChild(divPacker([['img', null, null, null, monthImage, null],['p', null, 'all-tasks', 'All Tasks', null, null]]));
 sidebar.appendChild(divPacker([['img', null, null, null, myList, null],['p', null, 'my-lists', 'My Lists', null, null]], null, 'myListContainer'));
-sidebar.appendChild(divPacker([['input', null, 'newListInput', 'text'],['img', null, 'addCircle', null, addCircle, null]], null, 'newListInputContainer'));
+sidebar.appendChild(divPacker([['input', null, 'newListInput', 'text'],['img', null, 'addListItemButton', null, addCircle, null]], null, 'newListInputContainer'));
 sidebar.appendChild(createElement('div', null, 'newListItems', null));
 sidebar.appendChild(divPacker([['img', null, null, null, allNotes, null],['p', null, 'notes', 'Notes', null, null]]));
 content.appendChild(sidebar);
@@ -22,3 +22,9 @@ const container = createElement('div', null, 'container', null);
 content.appendChild(container);
 
 const newListInput = document.getElementById('newListInput');
+const addListItemButton = document.getElementById('addListItemButton');
+
+addListItemButton.addEventListener('click', ()=>{
+    // console.log(newListInput.value);
+    document.getElementById('newListItems').appendChild(createElement('div', null, null, `${newListInput.value}`));
+});

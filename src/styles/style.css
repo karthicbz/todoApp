@@ -48,7 +48,7 @@ body{
 
 #newListInputContainer #newListInput{
     font-size: 1.1rem;
-    padding: 3px 0;
+    padding: 3px 0 3px 5px;
     border: none;
     border-radius: 5px;
 }
@@ -60,6 +60,25 @@ body{
 
 #sidebar>#newListInputContainer img:active{
     transform: scale(0.9);
+}
+
+#sidebar>#newListItems{
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: start;
+    background: #4F46E5;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+#sidebar>#newListItems>div{
+    width: 90%;
+    padding: 5px;
+}
+
+#sidebar>#newListItems>div:hover{
+    background-color: #6366F1;
+    border-radius: 5px;
 }
 
 #container{
