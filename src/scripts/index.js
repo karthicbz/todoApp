@@ -23,14 +23,18 @@ content.appendChild(container);
 
 const newListInput = document.getElementById('newListInput');
 const addListItemButton = document.getElementById('addListItemButton');
+const listItemValues = {};
 
 addListItemButton.addEventListener('click', ()=>{
     // console.log(newListInput.value);
-    const  newListItemContainer = document.querySelectorAll('#newListItems>div');
-    const newListItems = document.getElementById('newListItems');
-    newListItems.appendChild(createElement('div', null, null, `${newListInput.value}`));
+    // const  newListItemContainer = document.querySelectorAll('#newListItems>div');
+    // const newListItems = document.getElementById('newListItems');
+    // newListItems.appendChild(divPacker([['div', null, null, `${newListInput.value}`],['span', 'close', `${newListInput.value}`, `${'&times;'}`, null, null]], null, `${newListInput.value}`));
+    listItemValues[`${newListInput.value}`] = {};
+    localStorage.setItem('listItemValues', JSON.stringify(listItemValues));
+    console.log(JSON.parse(localStorage.getItem('listItemValues')));
     newListInput.value = '';
-    if(newListItemContainer.length >= 0){
-        newListItems.setAttribute('style', 'display: flex;');
-    }
+    // if(newListItemContainer.length >= 0){
+    //     newListItems.setAttribute('style', 'display: flex;');
+    // }
 });

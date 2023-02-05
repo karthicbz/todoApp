@@ -34,9 +34,15 @@ const elementCreator = (()=>{
             element.setAttribute('id', `${idName}`);
         }
         if(tagName !== 'input'){
-            if(text !== null){
-                element.textContent = text;
+            if(tagName === 'span'){
+                if(text !== null){
+                    element.innerHTML = text;
+                }
+            }else{
+                if(text !== null){
+                    element.textContent = text;
             }
+        }
         }else{
             element.type = text;
         }

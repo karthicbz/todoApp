@@ -78,6 +78,11 @@ body{
 #sidebar>#newListItems>div{
     width: 90%;
     padding: 5px;
+    display: flex;
+}
+
+#sidebar>#newListItems>div>div{
+    flex: 1;
 }
 
 #sidebar>#newListItems>div:hover{
