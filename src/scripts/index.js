@@ -30,9 +30,17 @@ addListItemButton.addEventListener('click', ()=>{
     // const  newListItemContainer = document.querySelectorAll('#newListItems>div');
     // const newListItems = document.getElementById('newListItems');
     // newListItems.appendChild(divPacker([['div', null, null, `${newListInput.value}`],['span', 'close', `${newListInput.value}`, `${'&times;'}`, null, null]], null, `${newListInput.value}`));
-    listItemValues[`${newListInput.value}`] = {};
-    localStorage.setItem('listItemValues', JSON.stringify(listItemValues));
-    console.log(JSON.parse(localStorage.getItem('listItemValues')));
+    if(localStorage.getItem('listItemValues')){
+        const values = JSON.parse(localStorage.getItem('listItemValues'));
+        values[`${newListInput.value}`] = {};
+        // listItemValues[`${newListInput.value}`] = {};
+        localStorage.setItem('listItemValues', JSON.stringify(values));
+        console.log(JSON.parse(localStorage.getItem('listItemValues')));
+    }else{
+        listItemValues[`${newListInput.value}`] = {};
+        localStorage.setItem('listItemValues', JSON.stringify(listItemValues));
+        console.log(JSON.parse(localStorage.getItem('listItemValues')));   
+    }
     newListInput.value = '';
     // if(newListItemContainer.length >= 0){
     //     newListItems.setAttribute('style', 'display: flex;');
