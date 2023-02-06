@@ -6,6 +6,7 @@ import monthImage from '../assets/month.svg';
 import myList from '../assets/myList.svg';
 import allNotes from '../assets/allNotes.svg';
 import addCircle from '../assets/add_circle.svg';
+import { storageFunction } from './listItemPopulator';
 
 const content = document.getElementById('content');
 
@@ -22,27 +23,19 @@ const container = createElement('div', null, 'container', null);
 content.appendChild(container);
 
 const newListInput = document.getElementById('newListInput');
-const addListItemButton = document.getElementById('addListItemButton');
-const listItemValues = {};
+const addListItemButton = document.querySelector('#content>#sidebar>#newListInputContainer>#addListItemButton');
+const newListItems = document.getElementById('newListItems');
+const newListItemContainer = document.querySelectorAll('#newListItems>div');
 
 addListItemButton.addEventListener('click', ()=>{
-    // console.log(newListInput.value);
-    // const  newListItemContainer = document.querySelectorAll('#newListItems>div');
-    // const newListItems = document.getElementById('newListItems');
-    // newListItems.appendChild(divPacker([['div', null, null, `${newListInput.value}`],['span', 'close', `${newListInput.value}`, `${'&times;'}`, null, null]], null, `${newListInput.value}`));
-    if(localStorage.getItem('listItemValues')){
-        const values = JSON.parse(localStorage.getItem('listItemValues'));
-        values[`${newListInput.value}`] = {};
-        // listItemValues[`${newListInput.value}`] = {};
-        localStorage.setItem('listItemValues', JSON.stringify(values));
-        console.log(JSON.parse(localStorage.getItem('listItemValues')));
-    }else{
-        listItemValues[`${newListInput.value}`] = {};
-        localStorage.setItem('listItemValues', JSON.stringify(listItemValues));
-        console.log(JSON.parse(localStorage.getItem('listItemValues')));   
+    newListItems.innerHTML = '';
+    const newListItemValues = storageFunction.storeValues(newListInput.value);
+    for(let i=0; i<newListItemValues.length; i++){
+        newListItems.appendChild(newListItemValues[i]);
+
     }
     newListInput.value = '';
-    // if(newListItemContainer.length >= 0){
-    //     newListItems.setAttribute('style', 'display: flex;');
-    // }
+    if(newListItemContainer.length >= 0){
+        newListItems.setAttribute('style', 'display: flex;');
+    }  
 });
