@@ -6,7 +6,7 @@ import monthImage from '../assets/month.svg';
 import myList from '../assets/myList.svg';
 import allNotes from '../assets/allNotes.svg';
 import addCircle from '../assets/add_circle.svg';
-import { storageFunction } from './listItemPopulator';
+import { storageFunction, populate } from './listItemPopulator';
 
 const content = document.getElementById('content');
 
@@ -39,3 +39,18 @@ addListItemButton.addEventListener('click', ()=>{
         newListItems.setAttribute('style', 'display: flex;');
     }  
 });
+
+function loadOnStart(){
+    // console.log(populate.populateValues());
+    const newListItemValues = populate.populateValues();
+    newListItems.innerHTML = '';
+    for(let i=0; i<newListItemValues.length; i++){
+        newListItems.appendChild(newListItemValues[i]);
+
+    }
+    if(newListItemContainer.length >= 0){
+        newListItems.setAttribute('style', 'display: flex;');
+    }  
+}
+
+loadOnStart();

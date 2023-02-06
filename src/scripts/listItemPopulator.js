@@ -30,4 +30,4 @@ const populate = (()=>{
     return {populateValues};
 })();
 
-export {storageFunction};
+export {storageFunction, populate};
