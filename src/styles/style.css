@@ -76,9 +76,10 @@ body{
 }
 
 #sidebar>#newListItems>div{
-    width: 90%;
+    width: 95%;
     padding: 5px;
     display: flex;
+    align-items: center;
 }
 
 #sidebar>#newListItems>div>div{
@@ -92,6 +93,14 @@ body{
 
 #sidebar>#newListItems>div:active{
     transform: scale(0.95);
+}
+
+#sidebar>#newListItems>div>span{
+    padding: 5px;
+}
+
+#sidebar>#newListItems>div>span:hover{
+    transform: scale(1.2);
 }
 
 #container{

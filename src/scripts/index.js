@@ -6,7 +6,7 @@ import monthImage from '../assets/month.svg';
 import myList from '../assets/myList.svg';
 import allNotes from '../assets/allNotes.svg';
 import addCircle from '../assets/add_circle.svg';
-import { storageFunction, populate } from './listItemPopulator';
+import { storageFunction, populate, remover } from './listItemPopulator';
 
 const content = document.getElementById('content');
 
@@ -25,7 +25,15 @@ content.appendChild(container);
 const newListInput = document.getElementById('newListInput');
 const addListItemButton = document.querySelector('#content>#sidebar>#newListInputContainer>#addListItemButton');
 const newListItems = document.getElementById('newListItems');
-const newListItemContainer = document.querySelectorAll('#newListItems>div');
+// const valuesOfNewListItem = document.querySelectorAll('#newListItems>div');
+
+const renderContainer=(element, value)=>{
+    if(value > 0){
+        element.setAttribute('style', 'display: flex;');
+    }else{
+        element.removeAttribute('style');
+    } 
+}
 
 addListItemButton.addEventListener('click', ()=>{
     newListItems.innerHTML = '';
@@ -35,9 +43,21 @@ addListItemButton.addEventListener('click', ()=>{
 
     }
     newListInput.value = '';
-    if(newListItemContainer.length >= 0){
-        newListItems.setAttribute('style', 'display: flex;');
-    }  
+    renderContainer(newListItems, newListItems.childNodes.length);
+});
+
+newListItems.addEventListener('click', (e)=>{
+    // console.log(e.target);
+    if(e.target.classList.value === 'close')
+    {
+        newListItems.innerHTML = '';
+        const newListItemValues = remover.removeItem(e.target.id);
+        for(let i=0; i<newListItemValues.length; i++){
+            newListItems.appendChild(newListItemValues[i]);
+
+        }
+        renderContainer(newListItems, newListItems.childNodes.length);
+    }
 });
 
 function loadOnStart(){
@@ -48,9 +68,7 @@ function loadOnStart(){
         newListItems.appendChild(newListItemValues[i]);
 
     }
-    if(newListItemContainer.length >= 0){
-        newListItems.setAttribute('style', 'display: flex;');
-    }  
+    renderContainer(newListItems, newListItems.childNodes.length);
 }
 
 loadOnStart();

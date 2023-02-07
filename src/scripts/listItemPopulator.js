@@ -30,4 +30,15 @@ const populate = (()=>{
     return {populateValues};
 })();
 
-export {storageFunction, populate};
+const remover=(()=>{
+    const removeItem = (item)=>{
+        const allItems = JSON.parse(localStorage.getItem('listItemValues'));
+        delete allItems[item];
+        localStorage.removeItem('listItemValues');
+        localStorage.setItem('listItemValues', JSON.stringify(allItems));
+        return populate.populateValues();
+    }
+    return {removeItem};
+})();
+
+export {storageFunction, populate, remover};
