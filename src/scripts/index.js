@@ -7,6 +7,7 @@ import myList from '../assets/myList.svg';
 import allNotes from '../assets/allNotes.svg';
 import addCircle from '../assets/add_circle.svg';
 import { storageFunction, populate, remover } from './listItemPopulator';
+import { renderContainer } from './containerPopulator';
 
 const content = document.getElementById('content');
 
@@ -26,6 +27,8 @@ const newListInput = document.getElementById('newListInput');
 const addListItemButton = document.querySelector('#content>#sidebar>#newListInputContainer>#addListItemButton');
 const newListItems = document.getElementById('newListItems');
 // const valuesOfNewListItem = document.querySelectorAll('#newListItems>div');
+
+const mainContainer = document.querySelector('#content>#container');
 
 const renderListItem=(element, value)=>{
     if(value > 0){
@@ -57,6 +60,10 @@ newListItems.addEventListener('click', (e)=>{
 
         }
         renderListItem(newListItems, newListItems.childNodes.length);
+    }else{
+        // if(e.target.innerText === '')
+        mainContainer.innerHTML = '';
+        mainContainer.appendChild(renderContainer.elements(e.target.innerText));
     }
 });
 
