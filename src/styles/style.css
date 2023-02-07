@@ -90,6 +90,10 @@ body{
     border-radius: 5px;
 }
 
+#sidebar>#newListItems>div:active{
+    transform: scale(0.95);
+}
+
 #container{
     grid-column: 2/3;
 }
