@@ -27,7 +27,7 @@ const addListItemButton = document.querySelector('#content>#sidebar>#newListInpu
 const newListItems = document.getElementById('newListItems');
 // const valuesOfNewListItem = document.querySelectorAll('#newListItems>div');
 
-const renderContainer=(element, value)=>{
+const renderListItem=(element, value)=>{
     if(value > 0){
         element.setAttribute('style', 'display: flex;');
     }else{
@@ -43,7 +43,7 @@ addListItemButton.addEventListener('click', ()=>{
 
     }
     newListInput.value = '';
-    renderContainer(newListItems, newListItems.childNodes.length);
+    renderListItem(newListItems, newListItems.childNodes.length);
 });
 
 newListItems.addEventListener('click', (e)=>{
@@ -56,7 +56,7 @@ newListItems.addEventListener('click', (e)=>{
             newListItems.appendChild(newListItemValues[i]);
 
         }
-        renderContainer(newListItems, newListItems.childNodes.length);
+        renderListItem(newListItems, newListItems.childNodes.length);
     }
 });
 
@@ -68,7 +68,7 @@ function loadOnStart(){
         newListItems.appendChild(newListItemValues[i]);
 
     }
-    renderContainer(newListItems, newListItems.childNodes.length);
+    renderListItem(newListItems, newListItems.childNodes.length);
 }
 
 loadOnStart();
