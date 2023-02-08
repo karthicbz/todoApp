@@ -11,6 +11,7 @@ import addButtonImage from '../assets/addButton.png';
 import { storageFunction, populate, remover } from './listItemPopulator';
 import { renderContainer } from './containerPopulator';
 import { renderFormContainer } from './formContainerPopulator';
+import { processor } from './dataProcessor';
 
 const content = document.getElementById('content');
 
@@ -111,9 +112,16 @@ formContainer.addEventListener('click', (e)=>{
         formContainer.removeAttribute('style');
         formBackground.removeAttribute('style');
     }else if(e.target.id === 'addTodo'){
+        const values = {
+            'title': `${title.value}`,
+            'description': `${description.value}`,
+            'schedule': `${schedule.value}`,
+            'priority': `${priority.value}`,
+        }
         formContainer.removeAttribute('style');
         formBackground.removeAttribute('style');
-        console.log(`title: ${title.value}, description: ${description.value}, schedule: ${schedule.value}, priority: ${priority.value}`);
+        // console.log(`title: ${title.value}, description: ${description.value}, schedule: ${schedule.value}, priority: ${priority.value}`);
+        processor.storeValues(currentListId, values);
     }
 });
 
