@@ -6,6 +6,7 @@ import monthImage from '../assets/month.svg';
 import myList from '../assets/myList.svg';
 import allNotes from '../assets/allNotes.svg';
 import addCircle from '../assets/add_circle.svg';
+import emptyImage from '../assets/empty.png';
 import { storageFunction, populate, remover } from './listItemPopulator';
 import { renderContainer } from './containerPopulator';
 
@@ -63,7 +64,11 @@ newListItems.addEventListener('click', (e)=>{
     }else{
         // if(e.target.innerText === '')
         mainContainer.innerHTML = '';
-        mainContainer.appendChild(renderContainer.elements(e.target.innerText));
+        if(renderContainer.lengthOfObject(e.target.innerText) === 0){
+            mainContainer.appendChild(createElement('img', null, null, null, emptyImage, null));
+        }else{
+            mainContainer.appendChild(renderContainer.elements(e.target.innerText));
+        }
     }
 });
 
