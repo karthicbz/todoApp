@@ -105,15 +105,23 @@ body{
 
 #container{
     grid-column: 2/3;
-    display: flex;
-    align-items: center;
     width: 100%;
-    justify-content: center;
 }
 
-#container>img{
+#container>#listItemContainer>img{
     width: 300px;
     height: 300px;
     opacity: 0.8;
+}
+
+#container>#listItemContainer, #container>#notesContainer, #container>#formContainer{
+    height: 100%;
+    width: 100%;
+}
+
+#container>#listItemContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 

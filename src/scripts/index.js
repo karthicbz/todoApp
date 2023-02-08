@@ -22,6 +22,9 @@ sidebar.appendChild(createElement('div', null, 'newListItems', null));
 sidebar.appendChild(divPacker([['img', null, null, null, allNotes, null],['p', null, 'notes', 'Notes', null, null]]));
 content.appendChild(sidebar);
 const container = createElement('div', null, 'container', null);
+container.appendChild(createElement('div', null, 'listItemContainer', null));
+container.appendChild(createElement('div', null, 'notesContainer', null));
+container.appendChild(createElement('div', null, 'formContainer', null));
 content.appendChild(container);
 
 const newListInput = document.getElementById('newListInput');
@@ -30,6 +33,7 @@ const newListItems = document.getElementById('newListItems');
 // const valuesOfNewListItem = document.querySelectorAll('#newListItems>div');
 
 const mainContainer = document.querySelector('#content>#container');
+const listItemContainer = document.querySelector('#container>#listItemContainer');
 
 const renderListItem=(element, value)=>{
     if(value > 0){
@@ -63,9 +67,9 @@ newListItems.addEventListener('click', (e)=>{
         renderListItem(newListItems, newListItems.childNodes.length);
     }else{
         // if(e.target.innerText === '')
-        mainContainer.innerHTML = '';
+        listItemContainer.innerHTML = '';
         if(renderContainer.lengthOfObject(e.target.innerText) === 0){
-            mainContainer.appendChild(createElement('img', null, null, null, emptyImage, null));
+            listItemContainer.appendChild(createElement('img', null, null, null, emptyImage, null));
         }else{
             mainContainer.appendChild(renderContainer.elements(e.target.innerText));
         }
