@@ -45,6 +45,7 @@ const formBackground = document.querySelector('#container>#formBackground');
 const closeForm = document.querySelector('#container>#formContainer>#closeForm');
 
 // const listItemContainer = document.querySelector('#container>#listItemContainer');
+let currentListId;
 
 function createForm(){
     const formElements = renderFormContainer.createFormElements();
@@ -94,16 +95,25 @@ newListItems.addEventListener('click', (e)=>{
 
 listItemContainer.addEventListener('click', (e)=>{
     if(e.target.tagName === 'IMG'){
-        const currentListId = e.target.parentNode.childNodes[0];
+        currentListId = e.target.parentNode.childNodes[0].id;
         formContainer.setAttribute('style', 'display: flex;');
         formBackground.setAttribute('style', 'display: block;');
     }
 });
 
 formContainer.addEventListener('click', (e)=>{
+    const title = document.querySelector('#formContainer>#title');
+    const description = document.querySelector('#formContainer>#description');
+    const schedule = document.querySelector('#formContainer>#datePicker>#date');
+    const priority = document.querySelector('#formContainer>#priorityContainer>#priority');
+
     if(e.target.id === 'closeForm'){
         formContainer.removeAttribute('style');
         formBackground.removeAttribute('style');
+    }else if(e.target.id === 'addTodo'){
+        formContainer.removeAttribute('style');
+        formBackground.removeAttribute('style');
+        console.log(`title: ${title.value}, description: ${description.value}, schedule: ${schedule.value}, priority: ${priority.value}`);
     }
 });
 
