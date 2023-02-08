@@ -140,3 +140,68 @@ body{
 #container>#notesContainer{
     display: none;
 }
+
+#container>#formContainer{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: 451px;
+    gap: 2rem;
+    justify-content: center;
+    background: #C7D2FE;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+#container>#formContainer>#title{
+    font-size: 2rem;
+    border: none;
+    border-bottom: 1.5px solid #3730A3;
+    padding-left: 5px;
+    background: #C7D2FE;
+    outline: none;
+}
+
+#container>#formContainer>#description{
+    font-size: 1.5rem;
+    border: none;
+    border-bottom: 1.5px solid #3730A3;
+    background: #C7D2FE;
+    outline: none;
+}
+
+#container>#formContainer>#datePicker{
+    display: flex;
+    gap: 10px;
+}
+
+#container>#formContainer>#date{
+    border-radius: 3px;
+    border-style: none;
+    border: 1.5px solid #3730A3;
+    background: #3730A3;
+    color: white;
+}
+
+#container>#formContainer>#priorityContainer>label{
+    padding-right: 10px;
+}
+
+#container>#formContainer>#priorityContainer>#priority{
+    border-style: none;
+    border-radius: 3px;
+    font-size: 1rem;
+    background: #3730A3;
+    color: white;
+}
+
+#container>#formContainer>#addTodo{
+    font-size: 1.5rem;
+    padding: 5px 0;
+    border-style: none;
+    border-radius: 5px;
+    background: #818CF8;
+}
+
+
+
