@@ -117,11 +117,12 @@ body{
 #container>#listItemContainer, #container>#notesContainer, #container>#formContainer{
     height: 100%;
     width: 100%;
-    display: none;
+    /* display: none; */
 }
 
 #container>#listItemContainer{
     position: relative;
+    display: none;
 }
 
 #container>#listItemContainer>img{
@@ -134,4 +135,8 @@ body{
 
 #container>#listItemContainer>img:active{
     transform: scale(0.9);
+}
+
+#container>#notesContainer{
+    display: none;
 }

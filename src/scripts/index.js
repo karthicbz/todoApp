@@ -10,6 +10,7 @@ import emptyImage from '../assets/empty.png';
 import addButtonImage from '../assets/addButton.png';
 import { storageFunction, populate, remover } from './listItemPopulator';
 import { renderContainer } from './containerPopulator';
+import { renderFormContainer } from './formContainerPopulator';
 
 const content = document.getElementById('content');
 
@@ -36,6 +37,14 @@ const newListItems = document.getElementById('newListItems');
 const mainContainer = document.querySelector('#content>#container');
 const listItemContainer = document.querySelector('#container>#listItemContainer');
 
+const formContainer = document.querySelector('#content>#container>#formContainer');
+
+function createForm(){
+    const formElements = renderFormContainer.createFormElements();
+    for(let i=0; i<formElements.length; i++){
+        formContainer.appendChild(formElements[i]);
+    }
+}
 
 const renderListItem=(element, value)=>{
     if(value > 0){
@@ -88,3 +97,4 @@ function loadOnStart(){
 }
 
 loadOnStart();
+createForm();
