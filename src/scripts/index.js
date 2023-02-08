@@ -7,6 +7,7 @@ import myList from '../assets/myList.svg';
 import allNotes from '../assets/allNotes.svg';
 import addCircle from '../assets/add_circle.svg';
 import emptyImage from '../assets/empty.png';
+import addButtonImage from '../assets/addButton.png';
 import { storageFunction, populate, remover } from './listItemPopulator';
 import { renderContainer } from './containerPopulator';
 
@@ -34,6 +35,7 @@ const newListItems = document.getElementById('newListItems');
 
 const mainContainer = document.querySelector('#content>#container');
 const listItemContainer = document.querySelector('#container>#listItemContainer');
+
 
 const renderListItem=(element, value)=>{
     if(value > 0){
@@ -66,13 +68,11 @@ newListItems.addEventListener('click', (e)=>{
         }
         renderListItem(newListItems, newListItems.childNodes.length);
     }else{
-        // if(e.target.innerText === '')
+        listItemContainer.setAttribute('style', 'display: block');
         listItemContainer.innerHTML = '';
-        if(renderContainer.lengthOfObject(e.target.innerText) === 0){
-            listItemContainer.appendChild(createElement('img', null, null, null, emptyImage, null));
-        }else{
-            mainContainer.appendChild(renderContainer.elements(e.target.innerText));
-        }
+        // console.log(e.target.parentNode);
+        listItemContainer.appendChild(renderContainer.elements(e.target.textContent.replace('×', '')));
+        listItemContainer.appendChild(createElement('img', null, null, null, addButtonImage, null));
     }
 });
 

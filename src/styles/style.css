@@ -117,11 +117,21 @@ body{
 #container>#listItemContainer, #container>#notesContainer, #container>#formContainer{
     height: 100%;
     width: 100%;
+    display: none;
 }
 
 #container>#listItemContainer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
 }
 
+#container>#listItemContainer>img{
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    bottom: 25px;
+    left: 25px;
+}
+
+#container>#listItemContainer>img:active{
+    transform: scale(0.9);
+}
