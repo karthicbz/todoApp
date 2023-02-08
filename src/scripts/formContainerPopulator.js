@@ -4,6 +4,7 @@ const renderFormContainer = (()=>{
     const createFormElements = ()=>{
         const priorityValues = ['Low', 'Medium', 'High'];
         const elements = [];
+        elements.push(createElement('span', null, 'closeForm', `${'&times;'}`));
         elements.push(createElement('input', null, 'title', 'text'));
         elements.push(createElement('input', null, 'description', 'text'));
         elements.push(divPacker([['p', null, null, 'Schedule'], ['input', null, 'date', 'date']], null, 'datePicker'));

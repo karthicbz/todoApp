@@ -143,7 +143,8 @@ body{
 }
 
 #container>#formContainer{
-    display: flex;
+    /* display: flex; */
+    display: none;
     flex-direction: column;
     width: 500px;
     height: 451px;
@@ -156,6 +157,29 @@ body{
     left: calc((100% - 250px) - 45%);
     top: 10%;
     box-shadow: 1px 1px 10px 2px gray;
+    z-index: 10;
+}
+
+#container>#formContainer>#closeForm{
+    align-self: flex-end;
+    /* padding: 10px; */
+    border-radius: 50%;
+    font-size: 1.5rem;
+    height: min-content;
+    padding: 0;
+    width: 30px;
+    text-align: center;
+    transition: background 0.5s;
+}
+
+#container>#formContainer>#closeForm:hover{
+    cursor: pointer;
+    border-radius: 50%;
+    background: #818CF8;
+}
+
+#container>#formContainer>#closeForm:active{
+    transform: scale(0.9);
 }
 
 #container>#formContainer>#title{
@@ -212,7 +236,11 @@ body{
     width: 100%;
     height: 100%;
     background-color: transparent;
-    filter: blur(8px);
+    backdrop-filter: blur(8px);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
 }
 
 

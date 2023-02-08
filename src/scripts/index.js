@@ -40,6 +40,12 @@ const listItemContainer = document.querySelector('#container>#listItemContainer'
 
 const formContainer = document.querySelector('#content>#container>#formContainer');
 
+const formBackground = document.querySelector('#container>#formBackground');
+
+const closeForm = document.querySelector('#container>#formContainer>#closeForm');
+
+// const listItemContainer = document.querySelector('#container>#listItemContainer');
+
 function createForm(){
     const formElements = renderFormContainer.createFormElements();
     for(let i=0; i<formElements.length; i++){
@@ -83,6 +89,21 @@ newListItems.addEventListener('click', (e)=>{
         // console.log(e.target.parentNode);
         listItemContainer.appendChild(renderContainer.elements(e.target.textContent.replace('×', '')));
         listItemContainer.appendChild(createElement('img', null, null, null, addButtonImage, null));
+    }
+});
+
+listItemContainer.addEventListener('click', (e)=>{
+    if(e.target.tagName === 'IMG'){
+        const currentListId = e.target.parentNode.childNodes[0];
+        formContainer.setAttribute('style', 'display: flex;');
+        formBackground.setAttribute('style', 'display: block;');
+    }
+});
+
+formContainer.addEventListener('click', (e)=>{
+    if(e.target.id === 'closeForm'){
+        formContainer.removeAttribute('style');
+        formBackground.removeAttribute('style');
     }
 });
 
