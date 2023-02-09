@@ -86,11 +86,12 @@ newListItems.addEventListener('click', (e)=>{
         }
         renderListItem(newListItems, newListItems.childNodes.length);
     }else{
-        listItemContainer.setAttribute('style', 'display: block');
+        listItemContainer.setAttribute('style', 'display: flex');
         listItemContainer.innerHTML = '';
         // console.log(e.target.parentNode);
         listItemContainer.appendChild(renderContainer.elements(e.target.textContent.replace('×', '')));
         listItemContainer.appendChild(createElement('img', null, null, null, addButtonImage, null));
+        displayListItemContainerChild(e.target.textContent.replace('×', ''));
     }
 });
 
@@ -122,8 +123,23 @@ formContainer.addEventListener('click', (e)=>{
         formBackground.removeAttribute('style');
         // console.log(`title: ${title.value}, description: ${description.value}, schedule: ${schedule.value}, priority: ${priority.value}`);
         processor.storeValues(currentListId, values);
+        displayListItemContainerChild(currentListId)
+
     }
 });
+
+function displayListItemContainerChild(listItem){
+    const listItemContainerChild = document.querySelector('#container>#listItemContainer>div');
+    listItemContainerChild.innerHTML = '';
+    const todoItems = renderContainer.makeTodo(processor.retrieveValues(listItem));
+    if(todoItems.length > 0){
+        for(let i=0; i<todoItems.length; i++){
+            listItemContainerChild.appendChild(todoItems[i]);
+        }
+    }else{
+        listItemContainerChild.append(createElement('img', null, null, null, emptyImage, null));
+    }
+}
 
 function loadOnStart(){
     // console.log(populate.populateValues());

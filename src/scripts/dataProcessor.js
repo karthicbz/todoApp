@@ -1,10 +1,15 @@
 const processor = (()=>{
-    const storeValues = (listItemChild, values)=>{
+    const storeValues = (itemName, values)=>{
         const listItem = JSON.parse(localStorage.getItem('listItemValues'));
-        listItem[listItemChild][values['title']] = values;
+        listItem[itemName][values['title']] = values;
         localStorage.setItem('listItemValues', JSON.stringify(listItem));
     }
-    return {storeValues};
+
+    const retrieveValues = (itemName)=>{
+        const listItem = JSON.parse(localStorage.getItem('listItemValues'));
+        return listItem[itemName];
+    }
+    return {storeValues, retrieveValues};
 })();
 
 export {processor};

@@ -109,10 +109,16 @@ body{
     position: relative;
 }
 
-#container>#listItemContainer>img{
+#container>#listItemContainer>div>div{
+    display: flex;
+    gap: 10px;
+}
+
+#container>#listItemContainer>div>img{
     width: 300px;
     height: 300px;
     opacity: 0.8;
+    transform: translateY(100%);
 }
 
 #container>#listItemContainer, #container>#notesContainer, #container>#formContainer{
@@ -124,6 +130,8 @@ body{
 #container>#listItemContainer{
     position: relative;
     display: none;
+    justify-content: center;
+    /* align-items: center; */
 }
 
 #container>#listItemContainer>img{
