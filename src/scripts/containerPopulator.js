@@ -8,9 +8,13 @@ const renderContainer = (()=>{
     const makeTodo = (values)=>{
         const container = [];
         for(let key in values){
+            const todo = createElement('div', 'todo', null, null);
             const todoItem = divPacker([['input', null, key, 'checkbox'], ['p', null, null, key], ['button', null, null, 'Details'], 
             ['button', null, null, 'Edit'], ['span', null, null, `${'&times;'}`]], null, key);
-            container.push(todoItem);
+            todo.appendChild(todoItem);
+            const todoDetails = createElement('div', 'todoDetails', key, null);
+            todo.appendChild(todoDetails);
+            container.push(todo);
         }
         return container;
     }
