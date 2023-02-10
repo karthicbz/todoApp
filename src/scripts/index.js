@@ -64,14 +64,18 @@ const renderListItem=(element, value)=>{
 }
 
 addListItemButton.addEventListener('click', ()=>{
-    newListItems.innerHTML = '';
-    const newListItemValues = storageFunction.storeValues(newListInput.value);
-    for(let i=0; i<newListItemValues.length; i++){
-        newListItems.appendChild(newListItemValues[i]);
+    if(newListInput.value !== ''){
+        newListItems.innerHTML = '';
+        const newListItemValues = storageFunction.storeValues(newListInput.value);
+        for(let i=0; i<newListItemValues.length; i++){
+            newListItems.appendChild(newListItemValues[i]);
 
+        }
+        newListInput.value = '';
+        renderListItem(newListItems, newListItems.childNodes.length);
+    }else{
+        alert('text should not be empty');
     }
-    newListInput.value = '';
-    renderListItem(newListItems, newListItems.childNodes.length);
 });
 
 newListItems.addEventListener('click', (e)=>{
@@ -86,6 +90,7 @@ newListItems.addEventListener('click', (e)=>{
         }
         renderListItem(newListItems, newListItems.childNodes.length);
     }else{
+        removeFormBackground();
         listItemContainer.setAttribute('style', 'display: flex');
         listItemContainer.innerHTML = '';
         // console.log(e.target.parentNode);
@@ -110,8 +115,7 @@ formContainer.addEventListener('click', (e)=>{
     const priority = document.querySelector('#formContainer>#priorityContainer>#priority');
 
     if(e.target.id === 'closeForm'){
-        formContainer.removeAttribute('style');
-        formBackground.removeAttribute('style');
+        removeFormBackground()
     }else if(e.target.id === 'addTodo'){
         const values = {
             'title': `${title.value}`,
@@ -119,8 +123,7 @@ formContainer.addEventListener('click', (e)=>{
             'schedule': `${schedule.value}`,
             'priority': `${priority.value}`,
         }
-        formContainer.removeAttribute('style');
-        formBackground.removeAttribute('style');
+        removeFormBackground()
         // console.log(`title: ${title.value}, description: ${description.value}, schedule: ${schedule.value}, priority: ${priority.value}`);
         processor.storeValues(currentListId, values);
         displayListItemContainerChild(currentListId)
@@ -150,6 +153,11 @@ function loadOnStart(){
 
     }
     renderListItem(newListItems, newListItems.childNodes.length);
+}
+
+function removeFormBackground(){
+    formContainer.removeAttribute('style');
+    formBackground.removeAttribute('style');
 }
 
 loadOnStart();
