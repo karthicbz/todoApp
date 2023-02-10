@@ -113,7 +113,9 @@ listItemContainer.addEventListener('click', (e)=>{
         allTodoDetails.forEach(details=>{
             details.querySelector('.todoDetails').textContent = '';
             details.querySelector('.todoDetails').classList.remove('showPadding');
+            details.querySelector('div').classList.remove('addShadow');
         });
+        e.target.parentNode.classList.add('addShadow');
         todoDetails.classList.add('showPadding');
         const processedDetails = renderContainer.displayTodoDetails(parentItem, childItem);
         processedDetails.forEach(details=>{

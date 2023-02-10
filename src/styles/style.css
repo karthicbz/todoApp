@@ -122,11 +122,11 @@ body{
     margin: 8px 0;
     border-radius: 8px;
     align-items: center;
-    transition: box-shadow 0.5s;
+    transition: box-shadow 0.2s;
 }
 
 .addShadow{
-    box-shadow: 1px 1px 10px 1px grey;;
+    box-shadow: 2px 2px 8px 0px grey;
 }
 
 #container>#listItemContainer>div>div>div>p{
