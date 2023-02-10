@@ -122,6 +122,11 @@ body{
     margin: 8px 0;
     border-radius: 8px;
     align-items: center;
+    transition: box-shadow 0.5s;
+}
+
+.addShadow{
+    box-shadow: 1px 1px 10px 1px grey;;
 }
 
 #container>#listItemContainer>div>div>div>p{
@@ -142,6 +147,7 @@ body{
 #container>#listItemContainer>div>div>div>button:hover{
     cursor: pointer;
 }
+
 #container>#listItemContainer>div>div>div>span{
     width: 25px;
     display: flex;
@@ -196,6 +202,31 @@ body{
 
 #container>#listItemContainer>img:active{
     transform: scale(0.9);
+}
+
+#container>#listItemContainer>div>div>.todoDetails{
+    background: #C7D2FE;
+    backdrop-filter: blur(1px);
+    /* padding: 15px; */
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    /* height: 0px; */
+    transition: padding 0.5s;
+}
+
+.showPadding{
+    padding: 15px;
+}
+
+#container>#listItemContainer>div>div>.todoDetails>div{
+    display: flex;
+    gap: 10px;
+}
+
+#container>#listItemContainer>div>div>.todoDetails>div>p:first-child{
+    flex-basis: 100px;
+    font-weight: bolder;
+    font-size: 1.1rem;
 }
 
 #container>#notesContainer{

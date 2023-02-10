@@ -1,4 +1,5 @@
 import { createElement, divPacker } from './element_creator';
+import { processor } from './dataProcessor';
 
 const renderContainer = (()=>{
     const elements = (listItem)=>{
@@ -19,11 +20,22 @@ const renderContainer = (()=>{
         return container;
     }
 
+    const displayTodoDetails = (parentItem, childItem)=>{
+        const details =  processor.retrieveValues(parentItem, childItem);
+        const detailsArray = [];
+        // detailsArray.push(createElement('h1', null, null, details['title']));
+        detailsArray.push(divPacker([['p', null, null, 'List Item:   '], ['p', null, null, parentItem]]));
+        detailsArray.push(divPacker([['p', null, null, 'Description:'], ['p', null, null, details['description']]]));
+        detailsArray.push(divPacker([['p', null, null, 'Schedule:'], ['p', null, null, details['schedule']]]));
+        detailsArray.push(divPacker([['p', null, null, 'Priority:'], ['p', null, null, details['priority']]]));
+        return detailsArray;
+    }
+
     const lengthOfObject = (name)=>{
         const listItems = JSON.parse(localStorage.getItem('listItemValues'));
         return Object.keys(listItems[name]).length;
     }
-    return {elements, lengthOfObject, makeTodo};
+    return {elements, lengthOfObject, makeTodo, displayTodoDetails};
 })();
 
 export {renderContainer};

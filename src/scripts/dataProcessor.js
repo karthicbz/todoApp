@@ -5,9 +5,13 @@ const processor = (()=>{
         localStorage.setItem('listItemValues', JSON.stringify(listItem));
     }
 
-    const retrieveValues = (itemName)=>{
+    const retrieveValues = (itemName1, itemName2=null)=>{
         const listItem = JSON.parse(localStorage.getItem('listItemValues'));
-        return listItem[itemName];
+        if(itemName2 === null){
+            return listItem[itemName1];
+        }else{
+            return listItem[itemName1][itemName2];
+        }
     }
     return {storeValues, retrieveValues};
 })();

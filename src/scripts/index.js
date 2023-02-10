@@ -105,6 +105,20 @@ listItemContainer.addEventListener('click', (e)=>{
         currentListId = e.target.parentNode.childNodes[0].id;
         formContainer.setAttribute('style', 'display: flex;');
         formBackground.setAttribute('style', 'display: block;');
+    }else if(e.target.textContent === 'Details'){
+        const todoDetails = e.target.parentNode.parentNode.childNodes[1];
+        const parentItem = e.target.parentNode.parentNode.parentNode.id;
+        const childItem = e.target.parentNode.id;
+        const allTodoDetails = document.querySelectorAll('#container>#listItemContainer>div>.todo');
+        allTodoDetails.forEach(details=>{
+            details.querySelector('.todoDetails').textContent = '';
+            details.querySelector('.todoDetails').classList.remove('showPadding');
+        });
+        todoDetails.classList.add('showPadding');
+        const processedDetails = renderContainer.displayTodoDetails(parentItem, childItem);
+        processedDetails.forEach(details=>{
+            todoDetails.appendChild(details);
+        });
     }
 });
 
