@@ -20,6 +20,10 @@ const renderFormContainer = (()=>{
 
         priorityValues.forEach(value=>{
             const priorityOption = document.createElement('option');
+            if(value === 'Low'){
+                // priorityOption.selected = value;
+                priorityOption.setAttribute('selected', 'selected');
+            }
             priorityOption.value = value;
             priorityOption.textContent = value;
             prioritySelect.appendChild(priorityOption);

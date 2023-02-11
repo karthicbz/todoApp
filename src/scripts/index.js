@@ -148,6 +148,9 @@ formContainer.addEventListener('click', (e)=>{
         removeFormBackground()
         // console.log(`title: ${title.value}, description: ${description.value}, schedule: ${schedule.value}, priority: ${priority.value}`);
         processor.storeValues(currentListId, values);
+        title.value = '';
+        description.value = '';
+        schedule.value = '';
         displayListItemContainerChild(currentListId)
 
     }
