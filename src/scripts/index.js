@@ -121,6 +121,12 @@ listItemContainer.addEventListener('click', (e)=>{
         processedDetails.forEach(details=>{
             todoDetails.appendChild(details);
         });
+    }else if(e.target.tagName === 'SPAN'){
+        const parentItem = document.querySelector('#container>#listItemContainer>div');
+        const childItem = e.target.parentNode.id;
+        // renderContainer.removeTodo(parentItem.id, childItem);
+        processor.removeTodo(parentItem.id, childItem);
+        displayListItemContainerChild(parentItem.id);
     }
 });
 
@@ -147,7 +153,7 @@ formContainer.addEventListener('click', (e)=>{
     }
 });
 
-function displayListItemContainerChild(listItem){
+function displayListItemContainerChild(listItem){  //this one create todolist cards
     const listItemContainerChild = document.querySelector('#container>#listItemContainer>div');
     listItemContainerChild.innerHTML = '';
     const todoItems = renderContainer.makeTodo(processor.retrieveValues(listItem));

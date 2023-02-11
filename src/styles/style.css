@@ -212,21 +212,34 @@ body{
     border-bottom-right-radius: 8px;
     /* height: 0px; */
     transition: padding 0.5s;
+    gap: 10px;
+    justify-content: space-around;
 }
 
 .showPadding{
+    display: flex;
     padding: 15px;
 }
 
-#container>#listItemContainer>div>div>.todoDetails>div{
+/* #container>#listItemContainer>div>div>.todoDetails>div{
     display: flex;
     gap: 10px;
+} */
+#container>#listItemContainer>div>div>.todoDetails>div{
+    text-align: center;
+    color: #312E81;
+}
+
+#container>#listItemContainer>div>div>.todoDetails>div:nth-child(2){
+    flex-basis: 250px;
 }
 
 #container>#listItemContainer>div>div>.todoDetails>div>p:first-child{
-    flex-basis: 100px;
     font-weight: bolder;
     font-size: 1.1rem;
+}
+#container>#listItemContainer>div>div>.todoDetails>span{
+    align-self: center;
 }
 
 #container>#notesContainer{

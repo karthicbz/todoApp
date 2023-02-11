@@ -13,7 +13,20 @@ const processor = (()=>{
             return listItem[itemName1][itemName2];
         }
     }
-    return {storeValues, retrieveValues};
+
+    const removeTodo = (parentItem, childItem)=>{
+        const details = JSON.parse(localStorage.getItem('listItemValues'));
+        delete details[parentItem][childItem];
+        localStorage.setItem('listItemValues', JSON.stringify(details));
+        // const details =  processor.retrieveValues(parentItem);
+        // delete details[childItem];
+        // console.log(details);
+        // localStorage.setItem('listItemValues', JSON.stringify(details));
+        // console.log(localStorage);
+    }
+
+
+    return {storeValues, retrieveValues, removeTodo};
 })();
 
 export {processor};

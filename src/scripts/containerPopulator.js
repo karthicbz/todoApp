@@ -24,10 +24,12 @@ const renderContainer = (()=>{
         const details =  processor.retrieveValues(parentItem, childItem);
         const detailsArray = [];
         // detailsArray.push(createElement('h1', null, null, details['title']));
-        detailsArray.push(divPacker([['p', null, null, 'List Item:   '], ['p', null, null, parentItem]]));
-        detailsArray.push(divPacker([['p', null, null, 'Description:'], ['p', null, null, details['description']]]));
-        detailsArray.push(divPacker([['p', null, null, 'Schedule:'], ['p', null, null, details['schedule']]]));
-        detailsArray.push(divPacker([['p', null, null, 'Priority:'], ['p', null, null, details['priority']]]));
+        // detailsArray.push(createElement('span', null, 'closeDetails', `${'&times;'}`));
+        detailsArray.push(divPacker([['p', null, null, 'List Item'], ['p', null, null, parentItem]]));
+        detailsArray.push(divPacker([['p', null, null, 'Description'], ['p', null, null, details['description']]]));
+        detailsArray.push(divPacker([['p', null, null, 'Schedule'], ['p', null, null, details['schedule']]]));
+        detailsArray.push(divPacker([['p', null, null, 'Priority'], ['p', null, null, details['priority']]]));
+        // detailsArray.push(createElement('span', null, 'closeDetails', `${'&times;'}`));
         return detailsArray;
     }
 
