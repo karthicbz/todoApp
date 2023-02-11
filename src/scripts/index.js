@@ -47,6 +47,7 @@ const closeForm = document.querySelector('#container>#formContainer>#closeForm')
 
 // const listItemContainer = document.querySelector('#container>#listItemContainer');
 let currentListId;
+let editMode = false;
 
 function createForm(){
     const formElements = renderFormContainer.createFormElements();
@@ -127,8 +128,28 @@ listItemContainer.addEventListener('click', (e)=>{
         // renderContainer.removeTodo(parentItem.id, childItem);
         processor.removeTodo(parentItem.id, childItem);
         displayListItemContainerChild(parentItem.id);
+    }else if(e.target.textContent === 'Edit'){
+        formContainer.setAttribute('style', 'display: flex;');
+        formBackground.setAttribute('style', 'display: block;');
+        const listItemName = document.querySelector('#container>#listItemContainer>div');
+        const todoListName = e.target.parentNode.id;
+        populateForm(listItemName.id, todoListName);
     }
 });
+
+function populateForm(item1, item2){
+    const title = document.querySelector('#formContainer>#title');
+    const description = document.querySelector('#formContainer>#description');
+    const schedule = document.querySelector('#formContainer>#datePicker>#date');
+    const priority = document.querySelector('#formContainer>#priorityContainer>#priority');
+
+    const details = processor.retrieveValues(item1, item2);
+    title.value = details['title'];
+    description.value = details['description'];
+    schedule.value = details['schedule'];
+    priority.value = details['priority'];
+    //start from here
+}
 
 formContainer.addEventListener('click', (e)=>{
     const title = document.querySelector('#formContainer>#title');

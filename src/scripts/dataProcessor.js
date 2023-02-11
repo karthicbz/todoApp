@@ -1,32 +1,32 @@
 const processor = (()=>{
+    const details = JSON.parse(localStorage.getItem('listItemValues'));
     const storeValues = (itemName, values)=>{
-        const listItem = JSON.parse(localStorage.getItem('listItemValues'));
-        listItem[itemName][values['title']] = values;
-        localStorage.setItem('listItemValues', JSON.stringify(listItem));
+        // const listItem = JSON.parse(localStorage.getItem('listItemValues'));
+        details[itemName][values['title']] = values;
+        localStorage.setItem('listItemValues', JSON.stringify(details));
     }
 
     const retrieveValues = (itemName1, itemName2=null)=>{
-        const listItem = JSON.parse(localStorage.getItem('listItemValues'));
+        // const listItem = JSON.parse(localStorage.getItem('listItemValues'));
         if(itemName2 === null){
-            return listItem[itemName1];
+            return details[itemName1];
         }else{
-            return listItem[itemName1][itemName2];
+            return details[itemName1][itemName2];
         }
     }
 
     const removeTodo = (parentItem, childItem)=>{
-        const details = JSON.parse(localStorage.getItem('listItemValues'));
         delete details[parentItem][childItem];
         localStorage.setItem('listItemValues', JSON.stringify(details));
-        // const details =  processor.retrieveValues(parentItem);
-        // delete details[childItem];
-        // console.log(details);
-        // localStorage.setItem('listItemValues', JSON.stringify(details));
-        // console.log(localStorage);
+    }
+
+    const modifyTodo = (listItemName, todoListName, values)=>{
+        details[listItemName][todoListName] = values;
+        localStorage.setItem('listItemValues', JSON.stringify(details));
     }
 
 
-    return {storeValues, retrieveValues, removeTodo};
+    return {storeValues, retrieveValues, removeTodo, modifyTodo};
 })();
 
 export {processor};
