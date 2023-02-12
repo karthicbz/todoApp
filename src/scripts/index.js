@@ -13,6 +13,8 @@ import { renderContainer } from './containerPopulator';
 import { renderFormContainer } from './formContainerPopulator';
 import { processor } from './dataProcessor';
 
+const {format} = require('date-fns');
+
 const content = document.getElementById('content');
 
 const sidebar = createElement('div', null, 'sidebar', null);
@@ -187,6 +189,19 @@ formContainer.addEventListener('click', (e)=>{
         displayListItemContainerChild(currentListId)
 
     }
+});
+
+document.querySelector('#sidebar>div:first-child').addEventListener('click', ()=>{
+    const today = format(new Date(), 'dd-MM-yyyy');
+    // console.log(today);
+    const getAllDetails = JSON.parse(localStorage.getItem('listItemValues'));
+
+    Object.keys(getAllDetails).forEach(key=>{
+        Object.keys(getAllDetails[key]).forEach(key1=>{
+            // console.log(`${Object.values(getAllDetails[key][key1])}, ${key1}`);
+            console.log(Object.values(getAllDetails[key][key1]).includes('2023-02-12'));
+        });
+    });
 });
 
 function displayListItemContainerChild(listItem){  //this one create todolist cards
