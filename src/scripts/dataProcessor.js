@@ -21,6 +21,7 @@ const processor = (()=>{
     }
 
     const modifyTodo = (listItemName, todoListName, values)=>{
+        // console.log(`listitemname: ${listItemName}\ntodoListName: ${todoListName}\nvalues: ${values}`);
         details[listItemName][todoListName] = values;
         localStorage.setItem('listItemValues', JSON.stringify(details));
     }

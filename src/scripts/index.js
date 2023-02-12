@@ -48,6 +48,7 @@ const closeForm = document.querySelector('#container>#formContainer>#closeForm')
 // const listItemContainer = document.querySelector('#container>#listItemContainer');
 let currentListId;
 let editMode = false;
+let currentTodoItem;
 
 function createForm(){
     const formElements = renderFormContainer.createFormElements();
@@ -131,9 +132,11 @@ listItemContainer.addEventListener('click', (e)=>{
     }else if(e.target.textContent === 'Edit'){
         formContainer.setAttribute('style', 'display: flex;');
         formBackground.setAttribute('style', 'display: block;');
-        const listItemName = document.querySelector('#container>#listItemContainer>div');
-        const todoListName = e.target.parentNode.id;
-        populateForm(listItemName.id, todoListName);
+        currentListId = document.querySelector('#container>#listItemContainer>div').id;
+        currentTodoItem = e.target.parentNode.id;
+
+        editMode = true;
+        populateForm(currentListId, currentTodoItem);
     }
 });
 
@@ -148,7 +151,7 @@ function populateForm(item1, item2){
     description.value = details['description'];
     schedule.value = details['schedule'];
     priority.value = details['priority'];
-    //start from here
+    
 }
 
 formContainer.addEventListener('click', (e)=>{
@@ -159,6 +162,9 @@ formContainer.addEventListener('click', (e)=>{
 
     if(e.target.id === 'closeForm'){
         removeFormBackground()
+        title.value = '';
+        description.value = '';
+        schedule.value = '';
     }else if(e.target.id === 'addTodo'){
         const values = {
             'title': `${title.value}`,
@@ -168,7 +174,13 @@ formContainer.addEventListener('click', (e)=>{
         }
         removeFormBackground()
         // console.log(`title: ${title.value}, description: ${description.value}, schedule: ${schedule.value}, priority: ${priority.value}`);
-        processor.storeValues(currentListId, values);
+        if(editMode === true){
+            processor.modifyTodo(currentListId, currentTodoItem, values);
+            editMode = false;
+        }else{
+            processor.storeValues(currentListId, values);
+        }
+        // processor.storeValues(currentListId, values);
         title.value = '';
         description.value = '';
         schedule.value = '';
