@@ -8,6 +8,7 @@ const renderContainer = (()=>{
 
     const makeTodo = (values)=>{
         const container = [];
+        console.log(values);
         for(let key in values){
             const todo = createElement('div', 'todo', null, null);
             const todoItem = divPacker([['input', null, key, 'checkbox'], ['p', null, null, key], ['button', null, null, 'Details'], 
@@ -33,11 +34,23 @@ const renderContainer = (()=>{
         return detailsArray;
     }
 
+    const displayTodayTodo = (values)=>{
+        const container = [];
+        console.log(values);
+        for(let key in values){
+            const todo = createElement('div', 'todo', null, null);
+            const todoItem = divPacker([['input', null, key, 'checkbox'], ['p', null, null, values[key]['description']], ['p', null, null, values[key]['priority']]]);
+            todo.appendChild(todoItem);
+            container.push(todo);
+        }
+        return container;
+    }
+
     const lengthOfObject = (name)=>{
         const listItems = JSON.parse(localStorage.getItem('listItemValues'));
         return Object.keys(listItems[name]).length;
     }
-    return {elements, lengthOfObject, makeTodo, displayTodoDetails};
+    return {elements, lengthOfObject, makeTodo, displayTodoDetails, displayTodayTodo};
 })();
 
 export {renderContainer};

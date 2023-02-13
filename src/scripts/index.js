@@ -191,23 +191,40 @@ formContainer.addEventListener('click', (e)=>{
     }
 });
 
-document.querySelector('#sidebar>div:first-child').addEventListener('click', ()=>{
-    const today = format(new Date(), 'dd-MM-yyyy');
+document.querySelector('#sidebar>div:first-child').addEventListener('click', (e)=>{
+    listItemContainer.setAttribute('style', 'display: flex');
+    listItemContainer.innerHTML = '';
+    listItemContainer.appendChild(renderContainer.elements(e.target.textContent));
+    const today = format(new Date(), 'yyyy-MM-dd');
     // console.log(today);
     const getAllDetails = JSON.parse(localStorage.getItem('listItemValues'));
 
-    Object.keys(getAllDetails).forEach(key=>{
-        Object.keys(getAllDetails[key]).forEach(key1=>{
-            // console.log(`${Object.values(getAllDetails[key][key1])}, ${key1}`);
-            console.log(Object.values(getAllDetails[key][key1]).includes('2023-02-12'));
+    Object.keys(getAllDetails).forEach(listItem=>{
+        Object.keys(getAllDetails[listItem]).forEach(todoItem=>{
+            if(!Object.values(getAllDetails[listItem][todoItem]).includes(today)){
+                delete getAllDetails[listItem][todoItem];
+            }
         });
     });
+
+    for(let key in getAllDetails){
+        // console.log(getAllDetails[key]);
+        displayListItemContainerChild(null, getAllDetails[key]);
+    }
 });
 
-function displayListItemContainerChild(listItem){  //this one create todolist cards
+function displayListItemContainerChild(listItem=null, todayItem = null){  //this one create todolist cards
     const listItemContainerChild = document.querySelector('#container>#listItemContainer>div');
-    listItemContainerChild.innerHTML = '';
-    const todoItems = renderContainer.makeTodo(processor.retrieveValues(listItem));
+    // listItemContainerChild.innerHTML = '';
+    let todoItems;
+    if(listItem !== null){
+        // console.log(listItem);
+        listItemContainerChild.innerHTML = '';
+        todoItems = renderContainer.makeTodo(processor.retrieveValues(listItem));
+    }else{
+        console.log(todayItem);
+        todoItems = renderContainer.displayTodayTodo(todayItem);
+    }
     if(todoItems.length > 0){
         for(let i=0; i<todoItems.length; i++){
             listItemContainerChild.appendChild(todoItems[i]);
