@@ -13,8 +13,6 @@ import { renderContainer } from './containerPopulator';
 import { renderFormContainer } from './formContainerPopulator';
 import { processor } from './dataProcessor';
 
-const {format} = require('date-fns');
-
 const content = document.getElementById('content');
 
 const sidebar = createElement('div', null, 'sidebar', null);
@@ -191,27 +189,20 @@ formContainer.addEventListener('click', (e)=>{
     }
 });
 
-document.querySelector('#sidebar>div:first-child').addEventListener('click', (e)=>{
+document.querySelector('#sidebar>div:first-child').addEventListener('click', ()=>{
+    displayTodayTodoList();
+});
+
+function displayTodayTodoList(){
     listItemContainer.setAttribute('style', 'display: flex');
     listItemContainer.innerHTML = '';
-    listItemContainer.appendChild(renderContainer.elements(e.target.textContent));
-    const today = format(new Date(), 'yyyy-MM-dd');
-    // console.log(today);
-    const getAllDetails = JSON.parse(localStorage.getItem('listItemValues'));
-
-    Object.keys(getAllDetails).forEach(listItem=>{
-        Object.keys(getAllDetails[listItem]).forEach(todoItem=>{
-            if(!Object.values(getAllDetails[listItem][todoItem]).includes(today)){
-                delete getAllDetails[listItem][todoItem];
-            }
-        });
-    });
-
-    for(let key in getAllDetails){
+    listItemContainer.appendChild(renderContainer.elements('Today'));
+    const todayTodoList = processor.getTodayTodoList();
+    for(let key in todayTodoList){
         // console.log(getAllDetails[key]);
-        displayListItemContainerChild(null, getAllDetails[key]);
+        displayListItemContainerChild(null, todayTodoList[key]);
     }
-});
+}
 
 function displayListItemContainerChild(listItem=null, todayItem = null){  //this one create todolist cards
     const listItemContainerChild = document.querySelector('#container>#listItemContainer>div');
@@ -222,7 +213,6 @@ function displayListItemContainerChild(listItem=null, todayItem = null){  //this
         listItemContainerChild.innerHTML = '';
         todoItems = renderContainer.makeTodo(processor.retrieveValues(listItem));
     }else{
-        console.log(todayItem);
         todoItems = renderContainer.displayTodayTodo(todayItem);
     }
     if(todoItems.length > 0){
@@ -243,6 +233,7 @@ function loadOnStart(){
 
     }
     renderListItem(newListItems, newListItems.childNodes.length);
+    displayTodayTodoList();
 }
 
 function removeFormBackground(){

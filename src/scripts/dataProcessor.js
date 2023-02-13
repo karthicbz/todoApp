@@ -1,3 +1,5 @@
+const {format} = require('date-fns');
+
 const processor = (()=>{
     const details = JSON.parse(localStorage.getItem('listItemValues'));
     const storeValues = (itemName, values)=>{
@@ -26,8 +28,22 @@ const processor = (()=>{
         localStorage.setItem('listItemValues', JSON.stringify(details));
     }
 
+    const getTodayTodoList = ()=>{
+        const today = format(new Date(), 'yyyy-MM-dd');
+        const getAllDetails = JSON.parse(localStorage.getItem('listItemValues'));
+    
+        Object.keys(getAllDetails).forEach(listItem=>{
+            Object.keys(getAllDetails[listItem]).forEach(todoItem=>{
+                if(!Object.values(getAllDetails[listItem][todoItem]).includes(today)){
+                    delete getAllDetails[listItem][todoItem];
+                }
+            });
+        });
+        return getAllDetails;
+    }
 
-    return {storeValues, retrieveValues, removeTodo, modifyTodo};
+
+    return {storeValues, retrieveValues, removeTodo, modifyTodo, getTodayTodoList};
 })();
 
 export {processor};

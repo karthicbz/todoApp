@@ -8,7 +8,6 @@ const renderContainer = (()=>{
 
     const makeTodo = (values)=>{
         const container = [];
-        console.log(values);
         for(let key in values){
             const todo = createElement('div', 'todo', null, null);
             const todoItem = divPacker([['input', null, key, 'checkbox'], ['p', null, null, key], ['button', null, null, 'Details'], 
@@ -36,7 +35,6 @@ const renderContainer = (()=>{
 
     const displayTodayTodo = (values)=>{
         const container = [];
-        console.log(values);
         for(let key in values){
             const todo = createElement('div', 'todo', null, null);
             const todoItem = divPacker([['input', null, key, 'checkbox'], ['p', null, null, values[key]['description']], ['p', null, null, values[key]['priority']]]);

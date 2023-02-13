@@ -129,7 +129,7 @@ body{
     box-shadow: 2px 2px 8px 0px grey;
 }
 
-#container>#listItemContainer>div>div>div>p{
+#container>#listItemContainer>div>div>div>p:nth-of-type(1){
     flex: 1;
     font-size: 1.3rem;
     color: white;
