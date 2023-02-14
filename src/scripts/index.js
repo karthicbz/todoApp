@@ -45,6 +45,8 @@ const formBackground = document.querySelector('#container>#formBackground');
 
 const closeForm = document.querySelector('#container>#formContainer>#closeForm');
 
+const weekTodoList = document.querySelector('#content>#sidebar>div:nth-child(2)');
+
 // const listItemContainer = document.querySelector('#container>#listItemContainer');
 let currentListId;
 let editMode = false;
@@ -195,6 +197,11 @@ document.querySelector('#sidebar>div:first-child').addEventListener('click', ()=
     displayTodayTodoList();
 });
 
+weekTodoList.addEventListener('click', ()=>{
+    // console.log(processor.getWeekTodoList());
+    displayWeekTodoList();
+})
+
 function displayTodayTodoList(){
     listItemContainer.setAttribute('style', 'display: flex');
     listItemContainer.innerHTML = '';
@@ -203,6 +210,18 @@ function displayTodayTodoList(){
     for(let key in todayTodoList){
         if(Object.keys(todayTodoList[key]).length !== 0){
             displayListItemContainerChild(null, todayTodoList[key]);
+        }
+    }
+}
+
+function displayWeekTodoList(){
+    listItemContainer.setAttribute('style', 'display: flex');
+    listItemContainer.innerHTML = '';
+    listItemContainer.appendChild(renderContainer.elements('Week'));
+    const weekTodoList = processor.getWeekTodoList();
+    for(let key in weekTodoList){
+        if(Object.keys(weekTodoList[key]).length !== 0){
+            displayListItemContainerChild(null, weekTodoList[key]);
         }
     }
 }

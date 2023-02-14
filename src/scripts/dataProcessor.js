@@ -1,6 +1,7 @@
 const {format} = require('date-fns');
 // const daysToWeek = require('date-fns/daysToWeeks');
 var getDate = require('date-fns/getDate');
+var add = require('date-fns/add')
 
 const processor = (()=>{
     const details = JSON.parse(localStorage.getItem('listItemValues'));
@@ -32,10 +33,6 @@ const processor = (()=>{
 
     const getTodayTodoList = ()=>{
         const today = format(new Date(), 'yyyy-MM-dd');
-        // console.log(daysToWeek.default(14));
-        // for(let i=0; i<7; i++){
-        //     console.log(getDate.default(new Date())+i);
-        // }
         const getAllDetails = JSON.parse(localStorage.getItem('listItemValues'));
     
         Object.keys(getAllDetails).forEach(listItem=>{
@@ -48,8 +45,26 @@ const processor = (()=>{
         return getAllDetails;
     }
 
+    const getWeekTodoList = ()=>{
+        const week = []
+        for(let i=0; i<7; i++){
+            week.push(format(add.default(new Date(), {days: i,}), 'yyyy-MM-dd'));
+        }
 
-    return {storeValues, retrieveValues, removeTodo, modifyTodo, getTodayTodoList};
+        const getAllDetails = JSON.parse(localStorage.getItem('listItemValues'));
+        Object.keys(getAllDetails).forEach(listItem=>{
+            Object.keys(getAllDetails[listItem]).forEach(todoItem=>{
+                if(!week.includes(getAllDetails[listItem][todoItem]['schedule'])){
+                    delete getAllDetails[listItem][todoItem];
+                }
+            });
+        });
+
+        return getAllDetails;
+    }
+
+
+    return {storeValues, retrieveValues, removeTodo, modifyTodo, getTodayTodoList, getWeekTodoList};
 })();
 
 export {processor};

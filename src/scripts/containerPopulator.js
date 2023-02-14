@@ -37,7 +37,7 @@ const renderContainer = (()=>{
         const container = [];
         for(let key in values){
             const todo = createElement('div', 'todo', null, null);
-            const todoItem = divPacker([['input', null, key, 'checkbox'], ['p', null, null, values[key]['description']], ['p', null, null, values[key]['priority']]]);
+            const todoItem = divPacker([['input', null, key, 'checkbox'], ['p', null, null, values[key]['description']], ['p', null, null, values[key]['schedule']], ['p', null, null, values[key]['priority']]]);
             todo.appendChild(todoItem);
             container.push(todo);
         }
