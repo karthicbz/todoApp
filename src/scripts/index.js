@@ -137,6 +137,8 @@ listItemContainer.addEventListener('click', (e)=>{
 
         editMode = true;
         populateForm(currentListId, currentTodoItem);
+    }else{
+        console.log(e.target);
     }
 });
 
@@ -199,8 +201,9 @@ function displayTodayTodoList(){
     listItemContainer.appendChild(renderContainer.elements('Today'));
     const todayTodoList = processor.getTodayTodoList();
     for(let key in todayTodoList){
-        // console.log(getAllDetails[key]);
-        displayListItemContainerChild(null, todayTodoList[key]);
+        if(Object.keys(todayTodoList[key]).length !== 0){
+            displayListItemContainerChild(null, todayTodoList[key]);
+        }
     }
 }
 

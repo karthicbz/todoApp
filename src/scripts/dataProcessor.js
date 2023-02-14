@@ -1,4 +1,6 @@
 const {format} = require('date-fns');
+// const daysToWeek = require('date-fns/daysToWeeks');
+var getDate = require('date-fns/getDate');
 
 const processor = (()=>{
     const details = JSON.parse(localStorage.getItem('listItemValues'));
@@ -30,6 +32,10 @@ const processor = (()=>{
 
     const getTodayTodoList = ()=>{
         const today = format(new Date(), 'yyyy-MM-dd');
+        // console.log(daysToWeek.default(14));
+        // for(let i=0; i<7; i++){
+        //     console.log(getDate.default(new Date())+i);
+        // }
         const getAllDetails = JSON.parse(localStorage.getItem('listItemValues'));
     
         Object.keys(getAllDetails).forEach(listItem=>{
