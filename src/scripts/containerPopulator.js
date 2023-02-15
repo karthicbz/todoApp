@@ -9,10 +9,17 @@ const renderContainer = (()=>{
     const makeTodo = (values)=>{
         const container = [];
         for(let key in values){
+            // console.log(Object.keys(values[key]));
             const todo = createElement('div', 'todo', null, null);
-            const todoItem = divPacker([['input', null, key, 'checkbox'], ['p', null, null, key], ['button', null, null, 'Details'], 
+            if(Object.keys(values[key]).includes('state')){
+                const todoItem = divPacker([['p', 'strike', null, key], ['button', null, null, 'Details'], 
             ['button', null, null, 'Edit'], ['span', null, null, `${'&times;'}`]], null, key);
-            todo.appendChild(todoItem);
+                todo.appendChild(todoItem);
+            }else{
+                const todoItem = divPacker([['p', null, null, key], ['button', null, null, 'Details'], 
+            ['button', null, null, 'Edit'], ['span', null, null, `${'&times;'}`]], null, key);
+                todo.appendChild(todoItem);
+            }
             const todoDetails = createElement('div', 'todoDetails', key, null);
             todo.appendChild(todoDetails);
             container.push(todo);
@@ -37,17 +44,38 @@ const renderContainer = (()=>{
         const container = [];
         for(let key in values){
             const todo = createElement('div', 'todo', null, null);
-            const todoItem = divPacker([['input', null, key, 'checkbox'], ['p', null, null, values[key]['description']], ['p', null, null, values[key]['schedule']]]);
-            const priorityElement = createElement('p', null, null, values[key]['priority']);
-            if(values[key]['priority'] === 'Low'){
-                priorityElement.classList.add('priority-green');
-            }else if(values[key]['priority'] === 'Medium'){
-                priorityElement.classList.add('priority-orange');
+            if(Object.keys(values[key]).includes('state')){
+                const div = createElement('div', null, null, null);
+                const checkbox = createElement('input', null, key, 'checkbox');
+                checkbox.checked = true;
+                div.appendChild(checkbox);
+                const para1 = createElement('p', 'strike', null, values[key]['description']);
+                div.appendChild(para1);
+                const para2 = createElement('p', null, null, values[key]['schedule']);
+                div.appendChild(para2);
+                const priorityElement = createElement('p', null, null, values[key]['priority']);
+                if(values[key]['priority'] === 'Low'){
+                    priorityElement.classList.add('priority-green');
+                }else if(values[key]['priority'] === 'Medium'){
+                    priorityElement.classList.add('priority-orange');
+                }else{
+                    priorityElement.classList.add('priority-red');
+                }
+                div.appendChild(priorityElement);
+                todo.appendChild(div);
             }else{
-                priorityElement.classList.add('priority-red');
+                const todoItem = divPacker([['input', null, key, 'checkbox'], ['p', null, null, values[key]['description']], ['p', null, null, values[key]['schedule']]]);
+                const priorityElement = createElement('p', null, null, values[key]['priority']);
+                if(values[key]['priority'] === 'Low'){
+                    priorityElement.classList.add('priority-green');
+                }else if(values[key]['priority'] === 'Medium'){
+                    priorityElement.classList.add('priority-orange');
+                }else{
+                    priorityElement.classList.add('priority-red');
+                }
+                todoItem.appendChild(priorityElement);
+                todo.appendChild(todoItem);
             }
-            todoItem.appendChild(priorityElement);
-            todo.appendChild(todoItem);
             container.push(todo);
         }
         return container;

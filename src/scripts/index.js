@@ -142,7 +142,24 @@ listItemContainer.addEventListener('click', (e)=>{
         editMode = true;
         populateForm(currentListId, currentTodoItem);
     }else{
-        console.log(e.target);
+        const details = JSON.parse(localStorage.getItem('listItemValues'));
+        Object.keys(details).forEach(listItem=>{
+            Object.keys(details[listItem]).forEach(todoItem=>{
+                // console.log(Object.values(details[listItem][todoItem]));
+                if(Object.values(details[listItem][todoItem]).includes(e.target.id)){
+                    if(Object.keys(details[listItem][todoItem]).includes('state')){
+                        delete details[listItem][todoItem]['state'];
+                        localStorage.setItem('listItemValues', JSON.stringify(details));
+                        e.target.parentNode.querySelector('p').classList.remove('strike');
+                    }else{
+                        details[listItem][todoItem]['state'] = 'checked';
+                        localStorage.setItem('listItemValues', JSON.stringify(details));
+                        e.target.parentNode.querySelector('p').classList.add('strike');
+                    }
+                }
+            })
+        })
+        // e.target.parentNode.querySelector('p').classList.toggle('strike');
     }
 });
 
@@ -209,10 +226,15 @@ function displayTodayTodoList(){
     listItemContainer.innerHTML = '';
     listItemContainer.appendChild(renderContainer.elements('Today'));
     const todayTodoList = processor.getTodayTodoList();
+    let empty = true;
     for(let key in todayTodoList){
         if(Object.keys(todayTodoList[key]).length !== 0){
+            empty = false;
             displayListItemContainerChild(null, todayTodoList[key]);
         }
+    }
+    if(empty){
+        displayListItemContainerChild(null, {});
     }
 }
 
@@ -233,7 +255,6 @@ function displayAllTodoList(){
     listItemContainer.innerHTML = '';
     listItemContainer.appendChild(renderContainer.elements('AllTodo'));
     const allTodoList = processor.details;
-    console.log(allTodoList);
     for(let key in allTodoList){
         if(Object.keys(allTodoList[key]).length !== 0){
             displayListItemContainerChild(null, allTodoList[key]);
@@ -246,7 +267,6 @@ function displayListItemContainerChild(listItem=null, todayItem = null){  //this
     // listItemContainerChild.innerHTML = '';
     let todoItems;
     if(listItem !== null){
-        // console.log(listItem);
         listItemContainerChild.innerHTML = '';
         todoItems = renderContainer.makeTodo(processor.retrieveValues(listItem));
     }else{
