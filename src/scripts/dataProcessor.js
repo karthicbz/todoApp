@@ -64,7 +64,7 @@ const processor = (()=>{
     }
 
 
-    return {storeValues, retrieveValues, removeTodo, modifyTodo, getTodayTodoList, getWeekTodoList};
+    return {storeValues, retrieveValues, removeTodo, modifyTodo, getTodayTodoList, getWeekTodoList, details};
 })();
 
 export {processor};
