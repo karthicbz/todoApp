@@ -141,7 +141,7 @@ listItemContainer.addEventListener('click', (e)=>{
 
         editMode = true;
         populateForm(currentListId, currentTodoItem);
-    }else{
+    }else if(e.target.type === 'checkbox'){
         const details = JSON.parse(localStorage.getItem('listItemValues'));
         Object.keys(details).forEach(listItem=>{
             Object.keys(details[listItem]).forEach(todoItem=>{
