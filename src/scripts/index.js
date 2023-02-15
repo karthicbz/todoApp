@@ -129,6 +129,7 @@ listItemContainer.addEventListener('click', (e)=>{
         });
     }else if(e.target.tagName === 'SPAN'){
         const parentItem = document.querySelector('#container>#listItemContainer>div');
+        console.log(parentItem);
         const childItem = e.target.parentNode.id;
         // renderContainer.removeTodo(parentItem.id, childItem);
         processor.removeTodo(parentItem.id, childItem);

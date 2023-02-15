@@ -23,12 +23,14 @@ const processor = (()=>{
     }
 
     const removeTodo = (parentItem, childItem)=>{
+        const details = JSON.parse(localStorage.getItem('listItemValues'));
         delete details[parentItem][childItem];
         localStorage.setItem('listItemValues', JSON.stringify(details));
     }
 
     const modifyTodo = (listItemName, todoListName, values)=>{
         // console.log(`listitemname: ${listItemName}\ntodoListName: ${todoListName}\nvalues: ${values}`);
+        const details = JSON.parse(localStorage.getItem('listItemValues'));
         details[listItemName][todoListName] = values;
         localStorage.setItem('listItemValues', JSON.stringify(details));
     }
