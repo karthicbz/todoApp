@@ -110,7 +110,7 @@ body{
 }
 
 #container>#listItemContainer>div{
-    width: 70%;
+    width: 50%;
 }
 
 #container>#listItemContainer>div>div>div:first-child{
@@ -355,6 +355,8 @@ body{
     padding: 3px;
     border-radius: 8px;
     color: white;
+    width: 80px;
+    text-align: center;
 }
 
 .priority-red{
