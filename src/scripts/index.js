@@ -39,6 +39,8 @@ const newListItems = document.getElementById('newListItems');
 // const valuesOfNewListItem = document.querySelectorAll('#newListItems>div');
 
 const mainContainer = document.querySelector('#content>#container');
+const getSidebar = document.querySelector('#content>#sidebar');
+
 const listItemContainer = document.querySelector('#container>#listItemContainer');
 
 const formContainer = document.querySelector('#content>#container>#formContainer');
@@ -50,6 +52,9 @@ const closeForm = document.querySelector('#container>#formContainer>#closeForm')
 const weekTodoList = document.querySelector('#content>#sidebar>div:nth-child(3)');
 
 const allTodoList = document.querySelector('#content>#sidebar>div:nth-child(4)');
+
+const closeSideBar = document.querySelector('#content>#sidebar>#closeMenu');
+const openSideBar = document.querySelector('#content>#container>#menu');
 
 // const listItemContainer = document.querySelector('#container>#listItemContainer');
 let currentListId;
@@ -288,6 +293,18 @@ function displayListItemContainerChild(listItem=null, todayItem = null){  //this
         listItemContainerChild.append(createElement('img', null, null, null, emptyImage, null));
     }
 }
+
+closeSideBar.addEventListener('click', ()=>{
+    // console.log('close side bar');
+    content.setAttribute('style', 'display: block;');
+    getSidebar.setAttribute('style', 'display: none;');
+});
+
+openSideBar.addEventListener('click', ()=>{
+    // console.log('open side bar');
+    content.removeAttribute('style');
+    getSidebar.removeAttribute('style');
+});
 
 function loadOnStart(){
     // console.log(populate.populateValues());
