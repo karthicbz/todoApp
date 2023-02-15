@@ -244,10 +244,15 @@ function displayWeekTodoList(){
     listItemContainer.innerHTML = '';
     listItemContainer.appendChild(renderContainer.elements('Week'));
     const weekTodoList = processor.getWeekTodoList();
+    let empty = true;
     for(let key in weekTodoList){
         if(Object.keys(weekTodoList[key]).length !== 0){
+            empty = false;
             displayListItemContainerChild(null, weekTodoList[key]);
         }
+    }
+    if(empty){
+        displayListItemContainerChild(null, {});
     }
 }
 
@@ -255,7 +260,7 @@ function displayAllTodoList(){
     listItemContainer.setAttribute('style', 'display: flex');
     listItemContainer.innerHTML = '';
     listItemContainer.appendChild(renderContainer.elements('AllTodo'));
-    const allTodoList = processor.details;
+    const allTodoList = JSON.parse(localStorage.getItem('listItemValues'));
     for(let key in allTodoList){
         if(Object.keys(allTodoList[key]).length !== 0){
             displayListItemContainerChild(null, allTodoList[key]);
