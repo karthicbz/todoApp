@@ -184,6 +184,7 @@ formContainer.addEventListener('click', (e)=>{
             processor.modifyTodo(currentListId, currentTodoItem, values);
             editMode = false;
         }else{
+            console.log(currentListId);
             processor.storeValues(currentListId, values);
         }
         // processor.storeValues(currentListId, values);

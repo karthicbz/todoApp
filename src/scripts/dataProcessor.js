@@ -6,12 +6,14 @@ var add = require('date-fns/add')
 const processor = (()=>{
     const details = JSON.parse(localStorage.getItem('listItemValues'));
     const storeValues = (itemName, values)=>{
+        const details = JSON.parse(localStorage.getItem('listItemValues'));
         // const listItem = JSON.parse(localStorage.getItem('listItemValues'));
         details[itemName][values['title']] = values;
         localStorage.setItem('listItemValues', JSON.stringify(details));
     }
 
     const retrieveValues = (itemName1, itemName2=null)=>{
+        const details = JSON.parse(localStorage.getItem('listItemValues'));
         // const listItem = JSON.parse(localStorage.getItem('listItemValues'));
         if(itemName2 === null){
             return details[itemName1];
