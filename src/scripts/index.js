@@ -268,10 +268,15 @@ function displayAllTodoList(){
     listItemContainer.innerHTML = '';
     listItemContainer.appendChild(renderContainer.elements('AllTodo'));
     const allTodoList = JSON.parse(localStorage.getItem('listItemValues'));
+    let empty = true;
     for(let key in allTodoList){
         if(Object.keys(allTodoList[key]).length !== 0){
+            empty = false;
             displayListItemContainerChild(null, allTodoList[key]);
         }
+    }
+    if(empty){
+        displayListItemContainerChild(null, {});
     }
 }
 
