@@ -112,6 +112,7 @@ body{
 
 #container>#listItemContainer>div{
     width: 50%;
+    margin-top: 50px;
 }
 
 #container>#listItemContainer>div>div>div:first-child{

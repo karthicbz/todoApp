@@ -1,5 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const cssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const terserPlugin = require('terser-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -9,6 +11,12 @@ module.exports = {
         filename: 'main.[hash].js',
         path: path.resolve(__dirname, 'dist'),
         clean: true,
+    },
+    optimization:{
+        minimizer: [
+            new cssMinimizerPlugin(),
+            new terserPlugin()
+        ],
     },
     devtool: 'inline-source-map',
     plugins:[
