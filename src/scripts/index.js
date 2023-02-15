@@ -16,6 +16,7 @@ import { processor } from './dataProcessor';
 const content = document.getElementById('content');
 
 const sidebar = createElement('div', null, 'sidebar', null);
+sidebar.appendChild(createElement('span', null, 'closeMenu', 'Close'));
 sidebar.appendChild(divPacker([['img', null, null, null, todayImage, null], ['p', null, 'today', 'Today', null, null]]));
 sidebar.appendChild(divPacker([['img', null, null, null, weekImage, null], ['p', null, 'week', 'This Week', null, null]]));
 sidebar.appendChild(divPacker([['img', null, null, null, monthImage, null],['p', null, 'all-tasks', 'All Tasks', null, null]]));
@@ -46,9 +47,9 @@ const formBackground = document.querySelector('#container>#formBackground');
 
 const closeForm = document.querySelector('#container>#formContainer>#closeForm');
 
-const weekTodoList = document.querySelector('#content>#sidebar>div:nth-child(2)');
+const weekTodoList = document.querySelector('#content>#sidebar>div:nth-child(3)');
 
-const allTodoList = document.querySelector('#content>#sidebar>div:nth-child(3)');
+const allTodoList = document.querySelector('#content>#sidebar>div:nth-child(4)');
 
 // const listItemContainer = document.querySelector('#container>#listItemContainer');
 let currentListId;
@@ -215,7 +216,7 @@ formContainer.addEventListener('click', (e)=>{
     }
 });
 
-document.querySelector('#sidebar>div:first-child').addEventListener('click', displayTodayTodoList);
+document.querySelector('#sidebar>div:nth-child(2)').addEventListener('click', displayTodayTodoList);
 
 weekTodoList.addEventListener('click', displayWeekTodoList);
 

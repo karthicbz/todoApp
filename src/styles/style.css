@@ -393,5 +393,28 @@ body{
     color: #1038f7;
 }
 
+#content>#container>#menu:active{
+    transform: scale(0.9);
+}
+
+#content>#sidebar>#closeMenu{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    color: white;
+    border: 1px solid white;
+    border-radius: 8px;
+    margin: 10px;
+}
+
+#content>#sidebar>#closeMenu:hover{
+    cursor: pointer;
+}
+
+#content>#sidebar>#closeMenu:active{
+    background-color: rgba(255, 255, 255, 0.5);
+    
+}
+
 
 
