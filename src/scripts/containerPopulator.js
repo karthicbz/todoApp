@@ -37,7 +37,16 @@ const renderContainer = (()=>{
         const container = [];
         for(let key in values){
             const todo = createElement('div', 'todo', null, null);
-            const todoItem = divPacker([['input', null, key, 'checkbox'], ['p', null, null, values[key]['description']], ['p', null, null, values[key]['schedule']], ['p', null, null, values[key]['priority']]]);
+            const todoItem = divPacker([['input', null, key, 'checkbox'], ['p', null, null, values[key]['description']], ['p', null, null, values[key]['schedule']]]);
+            const priorityElement = createElement('p', null, null, values[key]['priority']);
+            if(values[key]['priority'] === 'Low'){
+                priorityElement.classList.add('priority-green');
+            }else if(values[key]['priority'] === 'Medium'){
+                priorityElement.classList.add('priority-orange');
+            }else{
+                priorityElement.classList.add('priority-red');
+            }
+            todoItem.appendChild(priorityElement);
             todo.appendChild(todoItem);
             container.push(todo);
         }
