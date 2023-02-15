@@ -320,6 +320,9 @@ function loadOnStart(){
 
     }
     renderListItem(newListItems, newListItems.childNodes.length);
+    if(localStorage.getItem('listItemValues') === null){
+        localStorage.setItem('listItemValues', JSON.stringify({}));
+    }
     displayTodayTodoList();
 }
 
