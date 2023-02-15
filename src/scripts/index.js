@@ -29,6 +29,7 @@ container.appendChild(createElement('div', null, 'listItemContainer', null));
 container.appendChild(createElement('div', null, 'notesContainer', null));
 container.appendChild(createElement('div', null, 'formContainer', null));
 container.appendChild(createElement('div', null, 'formBackground', null));
+container.appendChild(createElement('button', null, 'menu', 'Menu'));
 content.appendChild(container);
 
 const newListInput = document.getElementById('newListInput');
