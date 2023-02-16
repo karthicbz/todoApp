@@ -51,6 +51,7 @@ body{
     padding: 3px 0 3px 5px;
     border: none;
     border-radius: 5px;
+    width: 80%;
 }
 
 #sidebar>#newListInputContainer img{
