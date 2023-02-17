@@ -303,12 +303,14 @@ closeSideBar.addEventListener('click', ()=>{
     // console.log('close side bar');
     content.setAttribute('style', 'display: block;');
     getSidebar.setAttribute('style', 'display: none;');
+
 });
 
 openSideBar.addEventListener('click', ()=>{
     // console.log('open side bar');
     content.removeAttribute('style');
     getSidebar.removeAttribute('style');
+
 });
 
 function loadOnStart(){
